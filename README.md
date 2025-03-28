@@ -1,5 +1,9 @@
 # COREDNS CUSTOM FORK
 
+This is my custom fork of CoreDNS for my homelab. It does not contain actual changes to the CoreDNS codebase, but rather my custom arrangement of plugins along with a Nix Flake that allows me to easily bring this package in to my NixOS-based systems.
+
+## CoreDNS Readme below
+
 [![CoreDNS](https://coredns.io/images/CoreDNS_Colour_Horizontal.png)](https://coredns.io)
 
 [![Documentation](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/coredns/coredns)
