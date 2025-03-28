@@ -6,3 +6,4 @@ build/
 release/
 vendor/
 .direnv
+result
