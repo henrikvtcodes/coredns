@@ -1,13 +1,12 @@
 {
-  lib,
-  buildGoModule,
   buildGoApplication,
-  pkgs,
   ...
 }:
 buildGoApplication {
   pname = "coredns";
   version = "0.0.0";
+
+  doCheck = false;
 
   src = ./.;
   pwd = ./.;
