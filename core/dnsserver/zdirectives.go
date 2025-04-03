@@ -10,7 +10,6 @@ package dnsserver
 // (after) them during a request, but they must not
 // care what plugin above them are doing.
 var Directives = []string{
-	"root",
 	"cancel",
 	"tls",
 	"timeouts",
@@ -21,7 +20,6 @@ var Directives = []string{
 	"bind",
 	"trace",
 	"health",
-	"pprof",
 	"prometheus",
 	"errors",
 	"log",
@@ -37,9 +35,9 @@ var Directives = []string{
 	"minimal",
 	"template",
 	"auto",
-	"secondary",
 	"loop",
+	"records",
+	"tailscale",
 	"forward",
 	"sign",
-	"tailscale",
 }

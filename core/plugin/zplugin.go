@@ -25,16 +25,14 @@ import (
 	_ "github.com/coredns/coredns/plugin/minimal"
 	_ "github.com/coredns/coredns/plugin/multisocket"
 	_ "github.com/coredns/coredns/plugin/nsid"
-	_ "github.com/coredns/coredns/plugin/pprof"
 	_ "github.com/coredns/coredns/plugin/reload"
 	_ "github.com/coredns/coredns/plugin/rewrite"
-	_ "github.com/coredns/coredns/plugin/root"
-	_ "github.com/coredns/coredns/plugin/secondary"
 	_ "github.com/coredns/coredns/plugin/sign"
 	_ "github.com/coredns/coredns/plugin/template"
 	_ "github.com/coredns/coredns/plugin/timeouts"
 	_ "github.com/coredns/coredns/plugin/tls"
 	_ "github.com/coredns/coredns/plugin/trace"
+	_ "github.com/coredns/records"
 
 	_ "github.com/damomurf/coredns-tailscale"
 )

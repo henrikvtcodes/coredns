@@ -2,8 +2,6 @@ module github.com/coredns/coredns
 
 go 1.23.2
 
-toolchain go1.23.6
-
 toolchain go1.24.1
 
 require (
@@ -92,6 +90,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575 // indirect
 	github.com/coder/websocket v1.8.12 // indirect
+	github.com/coredns/records v0.0.0-20230310133434-a3157e710d9e // indirect
 	github.com/coreos/go-iptables v0.7.1-0.20240112124308-65c67c9f46e6 // indirect
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/coreos/go-systemd/v22 v22.5.0 // indirect
