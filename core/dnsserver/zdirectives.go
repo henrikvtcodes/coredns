@@ -36,8 +36,8 @@ var Directives = []string{
 	"template",
 	"auto",
 	"loop",
+	"forward",
 	"records",
 	"tailscale",
-	"forward",
 	"sign",
 }
