@@ -130,6 +130,9 @@ schema = 3
   [mod."github.com/aws/aws-sdk-go-v2/service/secretsmanager"]
     version = "v1.35.2"
     hash = "sha256-WeGE3B0MDJIzwNJSQ1VXTc02Md0I0+kiFb/XT48FZCk="
+  [mod."github.com/aws/aws-sdk-go-v2/service/ssm"]
+    version = "v1.44.7"
+    hash = "sha256-U7XGN5O0Ksp6O3a2Nkb0WinTwuIHjCw5UNSwPjrMo8k="
   [mod."github.com/aws/aws-sdk-go-v2/service/sso"]
     version = "v1.25.2"
     hash = "sha256-FcATanEH6ZZPHKOjld2uNukGkW5NywLhLVtbkItuLPs="
