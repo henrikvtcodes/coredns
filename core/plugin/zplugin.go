@@ -34,6 +34,6 @@ import (
 	_ "github.com/coredns/coredns/plugin/trace"
 	_ "github.com/coredns/records"
 
-	_ "github.com/damomurf/coredns-tailscale"
+	_ "github.com/henrikvtcodes/coredns-tailscale"
 	_ "github.com/tmeckel/coredns-finalizer"
 )
