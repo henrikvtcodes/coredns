@@ -151,6 +151,9 @@ schema = 3
   [mod."github.com/bits-and-blooms/bitset"]
     version = "v1.13.0"
     hash = "sha256-1jccFEH9In72Jt3wSn4vi4/MJd/UDfDrC9DlmsGVc9o="
+  [mod."github.com/caddyserver/caddy"]
+    version = "v1.0.5"
+    hash = "sha256-GD2W82mFNQWI3d7/XhCgo5rnLRinEcKOf0HaNAE8y68="
   [mod."github.com/cespare/xxhash/v2"]
     version = "v2.3.0"
     hash = "sha256-7hRlwSR+fos1kx4VZmJ/7snR7zHh8ZFKX+qqqqGcQpY="
@@ -175,9 +178,6 @@ schema = 3
   [mod."github.com/coreos/go-systemd/v22"]
     version = "v22.5.0"
     hash = "sha256-E2zXikbmIQImghstLUWuey1YgA0Folu3F+fi5k4hCxA="
-  [mod."github.com/damomurf/coredns-tailscale"]
-    version = "v0.3.13"
-    hash = "sha256-f1//5w3/gGzATM7QriC+eBGTBOsw6+ZkuD1keVrFRzg="
   [mod."github.com/davecgh/go-spew"]
     version = "v1.1.2-0.20180830191138-d8f796af33cc"
     hash = "sha256-fV9oI51xjHdOmEx6+dlq7Ku2Ag+m/bmbzPo6A4Y74qc="
@@ -313,6 +313,9 @@ schema = 3
   [mod."github.com/hdevalence/ed25519consensus"]
     version = "v0.2.0"
     hash = "sha256-KTbeKMOT/HCJjDHqyciQjJPPgpNk6H0VyQCCbeGgs7Y="
+  [mod."github.com/henrikvtcodes/coredns-tailscale"]
+    version = "v0.0.0-20250404174855-c2dbb355ca24"
+    hash = "sha256-fSri+hmcqLfG1mTR89QliHXtU0TTCmhHFDKAhH9QXeY="
   [mod."github.com/illarion/gonotify/v2"]
     version = "v2.0.3"
     hash = "sha256-xLtI9dcSiG2Je+Nxi6PWtTa+KF7AtPI2gD+mKfC0fgI="
@@ -671,5 +674,5 @@ schema = 3
     version = "v1.4.0"
     hash = "sha256-Hd/M0vIfIVobDd87eb58p1HyVOjYWNlGq2bRXfmtVno="
   [mod."tailscale.com"]
-    version = "v1.80.0"
-    hash = "sha256-Xw1hlMwRLgSC5SS/5eULNYogMqrExgnZywpn0ow4glo="
+    version = "v1.80.3"
+    hash = "sha256-7y+udjbdjDrJ54GanDprDvRpLAJKMVwC+IMKw2BL/K0="
