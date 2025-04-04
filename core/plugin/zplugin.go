@@ -35,4 +35,5 @@ import (
 	_ "github.com/coredns/records"
 
 	_ "github.com/damomurf/coredns-tailscale"
+	_ "github.com/tmeckel/coredns-finalizer"
 )

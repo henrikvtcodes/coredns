@@ -490,6 +490,9 @@ schema = 3
   [mod."github.com/tklauser/numcpus"]
     version = "v0.6.1"
     hash = "sha256-8eFcw4YI0w6+GPhU5xMMQjiio94q/O5PpNO3QsvXve0="
+  [mod."github.com/tmeckel/coredns-finalizer"]
+    version = "v0.0.0-20230427174020-dc4780617144"
+    hash = "sha256-9OD5DgrTjDNy+KUyioecqRQipnONDFqs3pFxMTpXqhk="
   [mod."github.com/u-root/uio"]
     version = "v0.0.0-20240224005618-d2acac8f3701"
     hash = "sha256-2Y+tlxJdQ1aIzvz69d6BqvkUFIYVJh+rq3I+ucnNPY4="

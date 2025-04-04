@@ -39,5 +39,6 @@ var Directives = []string{
 	"forward",
 	"records",
 	"tailscale",
+	"finalize",
 	"sign",
 }
