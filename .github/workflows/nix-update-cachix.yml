@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  update-and-cache:
+  push-cache:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -30,10 +30,6 @@ jobs:
 
       - name: Set up Nix cache
         uses: DeterminateSystems/magic-nix-cache-action@v13
-
-      - name: Update nixpkgs input
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        run: nix flake lock --update-input nixpkgs
 
       - name: Build package
         run: nix build .#coredns -L
