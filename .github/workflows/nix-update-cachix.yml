@@ -1,4 +1,4 @@
-name: nix-update-cachix
+name: Cachix Build & Push
 
 on:
   push:
