@@ -1,0 +1,61 @@
+name: nix-update-cachix
+
+on:
+  push:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update-and-cache:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: true
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v16
+
+      - name: Set up Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v13
+
+      - name: Update nixpkgs input
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: nix flake lock --update-input nixpkgs
+
+      - name: Build package
+        run: nix build .#coredns -L
+
+      - name: Push to Cachix
+        uses: cachix/cachix-action@v16
+        with:
+          name: hvtc-coredns
+          authToken: ${{ secrets.CACHIX_PUSH_TOKEN }}
+
+      - name: Create pull request
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: nix/update-nixpkgs
+          title: "chore(nix): update nixpkgs"
+          body: |
+            Automated weekly nixpkgs update.
+
+            - Updated `nixpkgs` input via `nix flake lock --update-input nixpkgs`
+            - Built `.#coredns` on `x86_64-linux` and pushed to `hvtc-coredns` Cachix
+          commit-message: "chore(nix): update nixpkgs"
+          add-paths: flake.lock
+          delete-branch: true
