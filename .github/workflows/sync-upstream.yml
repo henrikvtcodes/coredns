@@ -1,0 +1,84 @@
+name: sync-upstream
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Fetch upstream
+        run: git fetch https://github.com/coredns/coredns.git master
+
+      - name: Fetch existing PR branch
+        run: git fetch origin sync/upstream 2>/dev/null || echo "No existing sync/upstream branch"
+
+      - name: Check if behind upstream
+        id: check
+        run: |
+          SHA=$(git rev-parse FETCH_HEAD)
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          if git show-ref --verify --quiet refs/remotes/origin/sync/upstream; then
+            echo "Existing PR branch found at $(git rev-parse origin/sync/upstream)"
+            if git merge-base --is-ancestor FETCH_HEAD origin/sync/upstream; then
+              echo "behind=0" >> "$GITHUB_OUTPUT"
+              echo "Existing PR already contains upstream $SHA — no update needed."
+            else
+              BEHIND=$(git rev-list origin/sync/upstream..FETCH_HEAD --count)
+              echo "behind=$BEHIND" >> "$GITHUB_OUTPUT"
+              echo "Existing PR behind upstream by $BEHIND commits ($SHA) — will update PR."
+            fi
+          else
+            BEHIND=$(git rev-list HEAD..FETCH_HEAD --count)
+            echo "behind=$BEHIND" >> "$GITHUB_OUTPUT"
+            echo "Behind upstream by $BEHIND commits ($SHA)"
+            if [ "$BEHIND" -eq 0 ]; then
+              echo "Already up to date with upstream."
+            fi
+          fi
+
+      - name: Merge upstream
+        if: steps.check.outputs.behind != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git merge --no-edit FETCH_HEAD || {
+            echo "Merge conflict detected, aborting merge for manual resolution"
+            git merge --abort || true
+            exit 1
+          }
+
+      - name: Create pull request
+        if: steps.check.outputs.behind != '0'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: sync/upstream
+          base: master
+          title: "chore: sync with upstream coredns/coredns"
+          body: |
+            Automated weekly sync with upstream [coredns/coredns](https://github.com/coredns/coredns) (`master`).
+
+            Upstream HEAD: https://github.com/coredns/coredns/commit/${{ steps.check.outputs.sha }}
+
+            CC @henrikvtcodes — please review.
+
+            > This PR was created automatically by the `sync-upstream` workflow. Close it if not needed or merge when ready.
+          commit-message: "chore: sync with upstream coredns/coredns"
+          delete-branch: true
