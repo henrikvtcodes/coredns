@@ -32,14 +32,12 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@v13
 
       - name: Update nixpkgs input
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: nix flake lock --update-input nixpkgs
 
-      - name: Build package
-        run: nix build .#coredns -L
-
-      - name: Push to Cachix
-        uses: cachix/cachix-action@v16
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          name: hvtc-coredns
-          authToken: ${{ secrets.CACHIX_PUSH_TOKEN }}
+          commit_message: Auto-update Flake
+          commit_user_name: Update Bot
+          commit_user_email: actions@github.com
+          commit_author: Update Bot <actions@github.com>
