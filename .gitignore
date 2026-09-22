@@ -7,3 +7,5 @@ release/
 vendor/
 .direnv
 result
+.DS_Store
+*/.DS_Store
